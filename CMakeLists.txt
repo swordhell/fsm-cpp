@@ -1,0 +1,18 @@
+cmake_minimum_required (VERSION 3.0)
+project (fsm-cpp)
+
+IF (WIN32)
+    add_compile_options("/std:c++17")
+	MESSAGE(STATUS "Now is windows")
+ELSEIF (APPLE)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 ")
+	MESSAGE(STATUS "Now is Apple systens.")
+ELSEIF (UNIX)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 ")
+	MESSAGE(STATUS "Now is UNIX-like OS's.")
+ENDIF ()
+
+file(GLOB_RECURSE ALL_FILES ./src/*.cpp ./src/*.h ./src/*.hpp ./cfg/*.json)
+add_executable (fsm-cpp ${ALL_FILES})
